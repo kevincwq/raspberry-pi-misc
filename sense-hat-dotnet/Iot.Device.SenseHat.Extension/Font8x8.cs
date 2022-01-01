@@ -687,22 +687,6 @@ internal static class Font8x8
             return FONTDICT['?'];
     }
 
-    //public static T[] GetPixels<T>(char letter, T foreColor, T backColor, bool rowByRow = true)
-    //{
-    //    var font = Font8x8.GetFont(letter);
-    //    var pixels = new T[8 * 8];
-    //    int r, c, index;
-    //    for (r = 0; r < 8; r++)
-    //    {
-    //        for (c = 0; c < 8; c++)
-    //        {
-    //            index = rowByRow ? r * 8 + c : c * 8 + r;
-    //            pixels[index] = (font[r] & 1 << c) > 0 ? foreColor : backColor;
-    //        }
-    //    }
-    //    return pixels;
-    //}
-
     public static T[] GetPixels<T>(string message, T foreColor, T backColor, bool rowByRow = true)
     {
         if (string.IsNullOrEmpty(message))
