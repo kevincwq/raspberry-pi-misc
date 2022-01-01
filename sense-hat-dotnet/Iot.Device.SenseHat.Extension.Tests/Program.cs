@@ -4,17 +4,17 @@ using Iot.Device.SenseHat.Extension;
 using System.Drawing;
 
 using SenseHat sh = new SenseHat();
-var message = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var message = " 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
 
 while (true)
 {
-    int speedInMs = 10;
+    int speedInMs = 20;
 
     Console.WriteLine("Showing letters by ShowLetter()");
     foreach (var letter in message)
     {
         sh.LedMatrix.ShowLetter(letter);
-        Thread.Sleep(speedInMs * 20);
+        Thread.Sleep(speedInMs * 10);
     }
 
     Console.WriteLine("Showing letters by ShowMessage()");
