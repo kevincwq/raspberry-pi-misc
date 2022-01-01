@@ -18,14 +18,12 @@ while (!Console.KeyAvailable)
     }
 
     Console.WriteLine("Showing letters by ShowMessage()");
-    int index = 0;
-    foreach (var letter in message)
+    for (int i = 0; i < message.Length; i++)
     {
-        sh.LedMatrix.ShowMessage(letter.ToString(), scrollDirection: (Direction)(index % 4)); // direction should have no effect
+        var letter = message[i];
+        sh.LedMatrix.ShowMessage(letter.ToString(), scrollDirection: (Direction)(i % 4)); // direction should have no effect
         Thread.Sleep(speedInMs);
-        index++;
     }
-
 
     Console.WriteLine("Showing message right to left");
 
