@@ -8,11 +8,38 @@ var message = "+-*/!\"#$><0123456789.=)(ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn
 
 while (!Console.KeyAvailable)
 {
-    sh.LedMatrix.ShowMessage(message, 100, Color.Blue, Color.Black, LedMatrixExtension.Direction.Left);
+    int speedInMs = 50;
 
-    sh.LedMatrix.ShowMessage(message, 100, Color.Red, Color.Black, LedMatrixExtension.Direction.Right);
+    Console.WriteLine("Showing letters by ShowLetter()");
+    foreach (var letter in message)
+    {
+        sh.LedMatrix.ShowLetter(letter);
+        Thread.Sleep(speedInMs);
+    }
 
-    sh.LedMatrix.ShowMessage(message, 100, Color.Green, Color.Black, LedMatrixExtension.Direction.Up);
+    Console.WriteLine("Showing letters by ShowMessage()");
+    int index = 0;
+    foreach (var letter in message)
+    {
+        sh.LedMatrix.ShowMessage(letter.ToString(), scrollDirection: (Direction)(index % 4)); // direction should have no effect
+        Thread.Sleep(speedInMs);
+        index++;
+    }
 
-    sh.LedMatrix.ShowMessage(message, 100, Color.Yellow, Color.Black, LedMatrixExtension.Direction.Down);
+
+    Console.WriteLine("Showing message right to left");
+
+    sh.LedMatrix.ShowMessage(message, speedInMs, Color.Blue, Color.Black, Direction.Left);
+
+    Console.WriteLine("Showing message left to right");
+
+    sh.LedMatrix.ShowMessage(message, speedInMs, Color.Red, Color.Black, Direction.Right);
+
+    Console.WriteLine("Showing message down to up");
+
+    sh.LedMatrix.ShowMessage(message, speedInMs, Color.Green, Color.Black, Direction.Up);
+
+    Console.WriteLine("Showing message up to down");
+
+    sh.LedMatrix.ShowMessage(message, speedInMs, Color.Yellow, Color.Black, Direction.Down);
 }

@@ -705,6 +705,9 @@ internal static class Font8x8
 
     public static T[] GetPixels<T>(string message, T foreColor, T backColor, bool rowByRow = true)
     {
+        if (string.IsNullOrEmpty(message))
+            return Array.Empty<T>();
+
         var pixels = new T[message.Length * 64];
         int i, r, c, index;
         for (i = 0; i < message.Length; i++)
