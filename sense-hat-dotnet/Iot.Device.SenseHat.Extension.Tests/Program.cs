@@ -4,17 +4,17 @@ using Iot.Device.SenseHat.Extension;
 using System.Drawing;
 
 using SenseHat sh = new SenseHat();
-var message = "+-*/!\"#$><0123456789.=)(ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz?,;:|@%[&_']\\~";
+var message = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-while (!Console.KeyAvailable)
+while (true)
 {
-    int speedInMs = 50;
+    int speedInMs = 10;
 
     Console.WriteLine("Showing letters by ShowLetter()");
     foreach (var letter in message)
     {
         sh.LedMatrix.ShowLetter(letter);
-        Thread.Sleep(speedInMs);
+        Thread.Sleep(speedInMs * 20);
     }
 
     Console.WriteLine("Showing letters by ShowMessage()");
@@ -22,7 +22,7 @@ while (!Console.KeyAvailable)
     {
         var letter = message[i];
         sh.LedMatrix.ShowMessage(letter.ToString(), scrollDirection: (Direction)(i % 4)); // direction should have no effect
-        Thread.Sleep(speedInMs);
+        Thread.Sleep(speedInMs * 20);
     }
 
     Console.WriteLine("Showing message right to left");

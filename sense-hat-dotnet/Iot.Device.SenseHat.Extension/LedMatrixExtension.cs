@@ -21,7 +21,7 @@ public static class LedMatrixExtension
         Color b_color = back_color ?? Color.Black;
         var rowByRow = scrollDirection == Direction.Up || scrollDirection == Direction.Down;
         var isReversed = scrollDirection == Direction.Right || scrollDirection == Direction.Down;
-        var msg = isReversed ? message.Reverse().ToString() : message;
+        var msg = isReversed ? Reverse(message) : message;
         var pixels = Font8x8.GetPixels(msg!, t_color, b_color, rowByRow);
 
         // shift by 8 pixels per frame to scroll
@@ -50,4 +50,11 @@ public static class LedMatrixExtension
     {
         ledMatrix.Fill(Color.Black);
     }
+   
+   public static string Reverse(string s)
+   {
+        char[] charArray = s.ToCharArray();
+        Array.Reverse( charArray );
+        return new string( charArray );
+   }
 }
