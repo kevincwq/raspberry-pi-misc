@@ -8,11 +8,11 @@ var message = "+-*/!\"#$><0123456789.=)(ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn
 
 while (!Console.KeyAvailable)
 {
-    sh.LedMatrix.ShowMessage(message, 100, Color.SkyBlue, Color.LightGray, LedMatrixExtension.Direction.Left);
+    sh.LedMatrix.ShowMessage(message, 100, Color.Blue, Color.Black, LedMatrixExtension.Direction.Left);
 
     sh.LedMatrix.ShowMessage(message, 100, Color.Red, Color.Black, LedMatrixExtension.Direction.Right);
 
     sh.LedMatrix.ShowMessage(message, 100, Color.Green, Color.Black, LedMatrixExtension.Direction.Up);
 
-    sh.LedMatrix.ShowMessage(message, 100, Color.Green, Color.MediumPurple, LedMatrixExtension.Direction.Down);
+    sh.LedMatrix.ShowMessage(message, 100, Color.Yellow, Color.Black, LedMatrixExtension.Direction.Down);
 }
