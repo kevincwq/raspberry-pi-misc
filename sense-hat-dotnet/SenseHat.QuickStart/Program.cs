@@ -1,8 +1,6 @@
 using System.Drawing;
-using System.Threading;
 using Iot.Device.Common;
 using Iot.Device.SenseHat;
-using UnitsNet;
 
 // set this to the current sea level pressure in the area for correct altitude readings
 var defaultSeaLevelPressure = WeatherHelper.MeanSeaLevel;
