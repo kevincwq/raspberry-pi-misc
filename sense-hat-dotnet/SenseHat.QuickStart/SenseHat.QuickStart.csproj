@@ -11,4 +11,8 @@
     <PackageReference Include="Iot.Device.Bindings" Version="1.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Iot.Device.SenseHat.Extension\Iot.Device.SenseHat.Extension.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,12 +1,17 @@
 ﻿namespace Iot.Device.SenseHat.Extension;
 
-internal static class MiscExtensions
+public static class MiscExtension
 {
     public static string Reverse(this string s)
     {
         char[] charArray = s.ToCharArray();
         Array.Reverse(charArray);
         return new string(charArray);
+    }
+
+    public static byte ReverseBits(this byte value)
+    {
+        return (byte)(((value * 0x80200802ul) & 0x0884422110ul) * 0x0101010101ul >> 32);
     }
 
     public static void Transpose<T>(this T[] array, int edgeLen, int startIndex = 0)
@@ -24,7 +29,7 @@ internal static class MiscExtensions
     public static void FlipUpDown<T>(this T[] array, int edgeLen, int startIndex = 0)
     {
         int i, j;
-        for (i = 1; i < edgeLen; i++)
+        for (i = 0; i < edgeLen; i++)
         {
             for (j = 0; j < edgeLen / 2; j++)
             {
@@ -36,7 +41,7 @@ internal static class MiscExtensions
     public static void FlipLeftRight<T>(this T[] array, int edgeLen, int startIndex = 0)
     {
         int i, j;
-        for (i = 1; i < edgeLen / 2; i++)
+        for (i = 0; i < edgeLen / 2; i++)
         {
             for (j = 0; j < edgeLen; j++)
             {
@@ -82,14 +87,7 @@ internal static class MiscExtensions
 
     private static void Rotate180<T>(T[] array, int edgeLen, int startIndex = 0)
     {
-        int i, j;
-        for (i = 1; i < edgeLen; i++)
-        {
-            for (j = 0; j < i; j++)
-            {
-                Swap(ref array[startIndex + j * edgeLen + i], ref array[startIndex + (edgeLen - 1 - i) * edgeLen + (edgeLen - 1 - j)]);
-            }
-        }
+        Array.Reverse(array, startIndex, edgeLen * edgeLen);
     }
 
     private static void Rotate270<T>(T[] array, int edgeLen, int startIndex = 0)
