@@ -697,7 +697,6 @@ internal static class Font8x8
         for (i = 0; i < message.Length; i++)
         {
             var font = Font8x8.GetFont(message[i]);
-            font.Rotate(8, rotation);
             for (r = 0; r < 8; r++)
             {
                 for (c = 0; c < 8; c++)
@@ -706,6 +705,7 @@ internal static class Font8x8
                     pixels[index] = (font[r] & 1 << c) > 0 ? foreColor : backColor;
                 }
             }
+            pixels.Rotate(8, i * 64, rotation);
         }
         return pixels;
     }

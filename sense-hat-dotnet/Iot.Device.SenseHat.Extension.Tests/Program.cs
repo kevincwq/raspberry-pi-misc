@@ -4,7 +4,7 @@ using Iot.Device.SenseHat.Extension;
 using System.Drawing;
 
 using SenseHat sh = new SenseHat();
-var message = " 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ ΔΘΠΣΦΨΩαβζ ∟₸╏⋮⊐∷⍊∴Ⅱ ";
+var message = " 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ ΔΘΠΣΦΨΩαβζ ~!@#$%^&*()_+ ";
 
 foreach (var rotation in Enum.GetValues<Rotation>())
 {
@@ -22,7 +22,7 @@ foreach (var rotation in Enum.GetValues<Rotation>())
     {
         var letter = message[i];
         sh.LedMatrix.ShowMessage(letter.ToString(), rotation: rotation, scrollDirection: (Direction)(i % 4)); // direction should have no effect
-        Thread.Sleep(speedInMs * 20);
+        Thread.Sleep(speedInMs * 10);
     }
 
     Console.WriteLine("Scrolling message to left- {0}", rotation);
