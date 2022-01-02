@@ -9,21 +9,32 @@ public static class LedMatrixExtension
         if (string.IsNullOrWhiteSpace(message))
             return; // nothing to display
 
-        var rowByRow = scrollDirection == Direction.Up || scrollDirection == Direction.Down;
         var isReversed = scrollDirection == Direction.Right || scrollDirection == Direction.Down;
         var msg = isReversed ? message.Reverse() : message;
-        var pixels = Font8x8.GetPixels(msg!, foreColor ?? Color.White, backColor ?? Color.Black, rotation, rowByRow);
+        var pixels = Font8x8.GetPixels(msg!, foreColor ?? Color.White, backColor ?? Color.Black, rotation);
+        var rowByRow = scrollDirection == Direction.Up || scrollDirection == Direction.Down;
+        var pixelsPerStep = rowByRow ? SenseHatLedMatrix.NumberOfPixelsPerRow : SenseHatLedMatrix.NumberOfPixels / SenseHatLedMatrix.NumberOfPixelsPerRow;
+
+        if (!rowByRow)
+        {
+            // colors are stored row by row in array from Font8x8.GetPixels()
+            // transpose for scrolling col by col
+            for (int i = 0; i < msg.Length; i++)
+            {
+                pixels.Transpose(pixelsPerStep, i * SenseHatLedMatrix.NumberOfPixels);
+            }
+        }
 
         // shift by 8 pixels per frame to scroll
-        var pixelsPerStep = rowByRow ? SenseHatLedMatrix.NumberOfPixelsPerRow : SenseHatLedMatrix.NumberOfPixels / SenseHatLedMatrix.NumberOfPixelsPerRow;
         var steps = (pixels.Length - SenseHatLedMatrix.NumberOfPixels) / pixelsPerStep;
         var step = 0;
         do
         {
             var start = isReversed ? (pixels.Length - SenseHatLedMatrix.NumberOfPixels - step * pixelsPerStep) : step * pixelsPerStep;
             var frame = pixels.Skip(start).Take(SenseHatLedMatrix.NumberOfPixels).ToArray();
-            if (!rowByRow) // transpose
+            if (!rowByRow) 
             {
+                // transpose back for displaying row by row
                 frame.Transpose(SenseHatLedMatrix.NumberOfPixelsPerRow);
             }
             ledMatrix.Write(frame);

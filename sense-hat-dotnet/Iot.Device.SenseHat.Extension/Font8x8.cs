@@ -687,22 +687,21 @@ internal static class Font8x8
             return FONTDICT['?'];
     }
 
-    public static T[] GetPixels<T>(string message, T foreColor, T backColor, Rotation rotation = Rotation.Rotate0, bool rowByRow = true)
+    public static T[] GetPixels<T>(string message, T foreColor, T backColor, Rotation rotation = Rotation.Rotate0)
     {
         if (string.IsNullOrEmpty(message))
             return Array.Empty<T>();
 
         var pixels = new T[message.Length * 64];
-        int i, r, c, index;
+        int i, r, c;
         for (i = 0; i < message.Length; i++)
         {
-            var font = Font8x8.GetFont(message[i]);
+            var font = GetFont(message[i]);
             for (r = 0; r < 8; r++)
             {
                 for (c = 0; c < 8; c++)
                 {
-                    index = rowByRow ? i * 64 + r * 8 + c : i * 64 + c * 8 + r;
-                    pixels[index] = (font[r] & 1 << c) > 0 ? foreColor : backColor;
+                    pixels[i * 64 + r * 8 + c] = (font[r] & 1 << c) > 0 ? foreColor : backColor;
                 }
             }
             pixels.Rotate(8, i * 64, rotation);
