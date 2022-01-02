@@ -8,7 +8,7 @@ var message = " 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ ΔΘΠΣΦΨΩαβζ ~!@#$
 
 foreach (var rotation in Enum.GetValues<Rotation>())
 {
-    int speedInMs = 20;
+    int speedInMs = 10;
 
     Console.WriteLine("Showing letters by ShowLetter() - {0}", rotation);
     foreach (var letter in message)
