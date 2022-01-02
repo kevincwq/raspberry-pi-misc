@@ -687,7 +687,7 @@ internal static class Font8x8
             return FONTDICT['?'];
     }
 
-    public static T[] GetPixels<T>(string message, T foreColor, T backColor, bool rowByRow = true)
+    public static T[] GetPixels<T>(string message, T foreColor, T backColor, Rotation rotation = Rotation.Rotate0, bool rowByRow = true)
     {
         if (string.IsNullOrEmpty(message))
             return Array.Empty<T>();
@@ -697,6 +697,7 @@ internal static class Font8x8
         for (i = 0; i < message.Length; i++)
         {
             var font = Font8x8.GetFont(message[i]);
+            font.Rotate(8, rotation);
             for (r = 0; r < 8; r++)
             {
                 for (c = 0; c < 8; c++)
