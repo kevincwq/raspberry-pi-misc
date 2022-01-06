@@ -92,7 +92,8 @@ public static class LedMatrixExtension
     /// <param name="rotation">Series rotation in clockwise.</param>
     /// <param name="forward">Indicates if series values moving forward.</param>
     /// <param name="speedInMs">Speed of scrolling.</param>
-    public static void ShowSeriesValues(this SenseHatLedMatrix ledMatrix, float[] values, Color? foreColor = null, Color? backColor = null, Rotation rotation = Rotation.Rotate0, bool forward = true, int speedInMs = 90)
+    /// <param name="fill">Indicates if fill area under line.</param>
+    public static void ShowSeriesValues(this SenseHatLedMatrix ledMatrix, float[] values, Color? foreColor = null, Color? backColor = null, bool fill = false, Rotation rotation = Rotation.Rotate0, bool forward = true, int speedInMs = 90)
     {
         if (values == null || values.Length == 0)
             return; // nothing to display
@@ -121,7 +122,8 @@ public static class LedMatrixExtension
                 value = index > -1 && index < normalised.Length ? normalised[index] : 0;
                 for (int row = 0; row < NumberOfPixelsPerLine; row++)
                 {
-                    frame[NumberOfPixelsPerLine * row + col] = (value >= NumberOfPixelsPerLine - row) ? fColor : bColor;
+                    var light = fill ? value >= NumberOfPixelsPerLine - row : value == NumberOfPixelsPerLine - row;
+                    frame[NumberOfPixelsPerLine * row + col] = light ? fColor : bColor;
                 }
             }
 

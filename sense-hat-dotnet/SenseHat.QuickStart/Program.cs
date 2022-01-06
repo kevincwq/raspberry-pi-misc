@@ -7,19 +7,29 @@ using SenseHat sh = new();
 
 var letters = "@9876543210~!";
 var message = " »»»»0123456789»»»»ABCDEFG»»»»ΔΘΠΣΦΨΩαβζ»»»» ";
-var series = Enumerable.Range(0, 100).Select(x => (float)Math.Abs(Math.Sin(x / 30f)) * 8).ToArray();
+var series = Enumerable.Range(0, 100).Select(x => (float)Math.Sin(x / 30f)).ToArray();
 int speedInMs = 20;
 
 // LedMatrix displaying
 foreach (var rotation in Enum.GetValues<Rotation>())
 {
-    Console.WriteLine("Showing series values - forward - {0}", rotation);
-    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.Black, rotation, true, speedInMs);
+    Console.WriteLine("Showing series values - forward - fill - {0}", rotation);
+    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.Black, true, rotation, true, speedInMs);
 
     sh.LedMatrix.Clear();
 
-    Console.WriteLine("Showing series values - backward - {0}", rotation);
-    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.Black, rotation, false, speedInMs);
+    Console.WriteLine("Showing series values - backward - fill - {0}", rotation);
+    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.Black, true, rotation, false, speedInMs);
+
+    sh.LedMatrix.Clear();
+
+    Console.WriteLine("Showing series values - forward - not fill - {0}", rotation);
+    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.Black, false, rotation, true, speedInMs);
+
+    sh.LedMatrix.Clear();
+
+    Console.WriteLine("Showing series values - backward - not fill - {0}", rotation);
+    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.Black, false, rotation, false, speedInMs);
 
     sh.LedMatrix.Clear();
 
