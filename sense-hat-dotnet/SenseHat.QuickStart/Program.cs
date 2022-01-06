@@ -16,8 +16,12 @@ foreach (var rotation in Enum.GetValues<Rotation>())
     Console.WriteLine("Showing series values - forward - {0}", rotation);
     sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.LightYellow, rotation, true, speedInMs * 2);
 
+    sh.LedMatrix.Clear();
+
     Console.WriteLine("Showing series values - backward - {0}", rotation);
     sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.LightYellow, rotation, false, speedInMs * 2);
+
+    sh.LedMatrix.Clear();
 
     Console.WriteLine("Showing letters - {0}", rotation);
     int index = 0;
@@ -30,21 +34,31 @@ foreach (var rotation in Enum.GetValues<Rotation>())
         Thread.Sleep(200);
     }
 
+    sh.LedMatrix.Clear();
+
     Console.WriteLine("Scrolling message to left- {0}", rotation);
 
     sh.LedMatrix.ShowMessage(message, Color.Blue, Color.Black, rotation, Direction.Left, speedInMs);
+
+    sh.LedMatrix.Clear();
 
     Console.WriteLine("Scrolling messageto right- {0}", rotation);
 
     sh.LedMatrix.ShowMessage(message, Color.Red, Color.Black, rotation, Direction.Right, speedInMs);
 
+    sh.LedMatrix.Clear();
+
     Console.WriteLine("Scrolling message to up- {0}", rotation);
 
     sh.LedMatrix.ShowMessage(message, Color.Green, Color.Black, rotation, Direction.Up, speedInMs);
 
+    sh.LedMatrix.Clear();
+
     Console.WriteLine("Scrolling message to down- {0}", rotation);
 
     sh.LedMatrix.ShowMessage(message, Color.Yellow, Color.Black, rotation, Direction.Down, speedInMs);
+
+    sh.LedMatrix.Clear();
 }
 
 
