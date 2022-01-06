@@ -1,0 +1,12 @@
+{
+  "Stations": [
+    { "Url": "http://sc8.radiocaroline.net:8040/;" },
+    { "Url": "http://stream.wlmm.dk:8010/wmrmp3" },
+    { "Url": "http://s1.logical.systems:9000/;" },
+    { "Url": "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_one" },
+    { "Url": "http://16603.live.streamtheworld.com:3690/KWYEFM_SC" },
+    { "Url": "http://tunein.streamguys1.com/cnn-new" },
+    { "Url": "http://lhttp.qingting.fm/live/4866/64k.mp3" },
+    { "Url": "http://lhttp.qingting.fm/live/388/64k.mp3" }
+  ]
+}

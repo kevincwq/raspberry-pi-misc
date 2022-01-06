@@ -3,40 +3,48 @@ using Iot.Device.Common;
 using Iot.Device.SenseHat;
 using Iot.Device.SenseHat.Extension;
 
-using SenseHat sh = new SenseHat();
+using SenseHat sh = new();
+
+var letters = "@9876543210~!";
+var message = " »»»»0123456789»»»»ABCDEFG»»»»ΔΘΠΣΦΨΩαβζ»»»» ";
+var series = Enumerable.Range(0, 315).Select(v => (float)Math.Sin(v / 100f)).ToArray();
+int speedInMs = 20;
 
 // LedMatrix displaying
 foreach (var rotation in Enum.GetValues<Rotation>())
 {
+    Console.WriteLine("Showing series values - forward - {0}", rotation);
+    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.LightYellow, rotation, true, speedInMs * 2);
+
+    Console.WriteLine("Showing series values - backward - {0}", rotation);
+    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.LightYellow, rotation, false, speedInMs * 2);
+
     Console.WriteLine("Showing letters - {0}", rotation);
     int index = 0;
-    foreach (var letter in "@9876543210~!")
+    foreach (var letter in letters)
     {
         if (index % 2 == 0)
             sh.LedMatrix.ShowLetter(letter, Color.Blue, Color.Black, rotation);
         else
-            sh.LedMatrix.ShowMessage(letter.ToString(), foreColor: Color.Blue, rotation: rotation);
+            sh.LedMatrix.ShowMessage(letter.ToString(), foreColor: Color.Blue, textRotation: rotation);
         Thread.Sleep(200);
     }
 
-    var message = " »»»»0123456789»»»»ABCDEFG»»»»ΔΘΠΣΦΨΩαβζ»»»» ";
-    int speedInMs = 20;
-
     Console.WriteLine("Scrolling message to left- {0}", rotation);
 
-    sh.LedMatrix.ShowMessage(message, speedInMs, Color.Blue, Color.Black, rotation, Direction.Left);
+    sh.LedMatrix.ShowMessage(message, Color.Blue, Color.Black, rotation, Direction.Left, speedInMs);
 
     Console.WriteLine("Scrolling messageto right- {0}", rotation);
 
-    sh.LedMatrix.ShowMessage(message, speedInMs, Color.Red, Color.Black, rotation, Direction.Right);
+    sh.LedMatrix.ShowMessage(message, Color.Red, Color.Black, rotation, Direction.Right, speedInMs);
 
     Console.WriteLine("Scrolling message to up- {0}", rotation);
 
-    sh.LedMatrix.ShowMessage(message, speedInMs, Color.Green, Color.Black, rotation, Direction.Up);
+    sh.LedMatrix.ShowMessage(message, Color.Green, Color.Black, rotation, Direction.Up, speedInMs);
 
     Console.WriteLine("Scrolling message to down- {0}", rotation);
 
-    sh.LedMatrix.ShowMessage(message, speedInMs, Color.Yellow, Color.Black, rotation, Direction.Down);
+    sh.LedMatrix.ShowMessage(message, Color.Yellow, Color.Black, rotation, Direction.Down, speedInMs);
 }
 
 

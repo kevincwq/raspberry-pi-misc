@@ -10,7 +10,7 @@ public class Font8x8Tests
     [InlineData('中', new byte[] { 0x78, 0xCC, 0x0C, 0x18, 0x30, 0x00, 0x30, 0x00 })]
     public void GetChar(char input, byte[] expect)
     {
-        Assert.Equal(expect, Font8x8.GetChar(input));
+        Assert.Equal(expect, Font8x8.GetGlyph(input));
     }
 
 
@@ -28,8 +28,8 @@ public class Font8x8Tests
     [InlineData('中', new byte[] { 0xFF, 0xCC, 0x0C, 0x18, 0xFF, 0x00, 0x30, 0x00 })]
     public void AddChar(char input, byte[] expect)
     {
-        Font8x8.AddChar(input, expect);
-        Assert.Equal(expect, Font8x8.GetChar(input));
+        Font8x8.AddGlyph(input, expect);
+        Assert.Equal(expect, Font8x8.GetGlyph(input));
     }
 
     [Theory]

@@ -30,7 +30,6 @@ To access the nth pixel in a row, right-shift by 7-n.
     (0x30 >> 1) & 1 == 0-------------+ |
     (0x30 >> 0) & 1 == 0---------------+
 */
-
 internal static class Font8x8
 {
     private static readonly Dictionary<char, byte[]> FONTDICT = new()
@@ -629,7 +628,12 @@ internal static class Font8x8
         { '\uE55A', new byte[] { 0x00, 0x00, 0x18, 0x3C, 0x66, 0x66, 0x66, 0x00 } }    // U+E55A (SGA Z)
     };
 
-    public static byte[] GetChar(char letter)
+    /// <summary>
+    /// Get glyph for a letter.
+    /// </summary>
+    /// <param name="letter">The letter to look up.</param>
+    /// <returns>8 bytes represent glyph of the letter, return glyph of '?' if letter doesn't exist.</returns>
+    public static byte[] GetGlyph(char letter)
     {
         if (FONTDICT.ContainsKey(letter))
             return FONTDICT[letter];
@@ -637,19 +641,34 @@ internal static class Font8x8
             return FONTDICT['?'];
     }
 
-    public static void AddChar(char letter, byte[] font)
+    /// <summary>
+    /// Add glyph for a letter.
+    /// </summary>
+    /// <param name="letter">Letter to add.</param>
+    /// <param name="glyph">Glyph to add.</param>
+    /// <exception cref="ArgumentException">Throw if <paramref name="glyph"/> is no valid.</exception>
+    public static void AddGlyph(char letter, byte[] glyph)
     {
-        if (font == null || font.Length != 8)
+        if (glyph == null || glyph.Length != 8)
         {
-            throw new ArgumentException("font must be an array of 8 bytes", nameof(font));
+            throw new ArgumentException("font must be an array of 8 bytes", nameof(glyph));
         }
 
         if (!FONTDICT.ContainsKey(letter))
         {
-            FONTDICT.Add(letter, font.Select(x => x).ToArray());
+            FONTDICT.Add(letter, glyph.Select(x => x).ToArray());
         }
     }
 
+    /// <summary>
+    /// Get pixels representing <paramref name="message"/>.
+    /// </summary>
+    /// <typeparam name="T">Type of color.</typeparam>
+    /// <param name="message">Message to be represented.</param>
+    /// <param name="foreColor">Foreground color for text.</param>
+    /// <param name="backColor">Background color.</param>
+    /// <param name="rotation">Clockwise rotation of text.</param>
+    /// <returns>An array representing pixels of the message, in an oder of row by row, with length 8 x 8 x length of <paramref name="message"/>.</returns>
     public static T[] GetPixels<T>(string message, T foreColor, T backColor, Rotation rotation = Rotation.Rotate0)
     {
         if (string.IsNullOrEmpty(message))
@@ -659,7 +678,7 @@ internal static class Font8x8
         int i, r, c;
         for (i = 0; i < message.Length; i++)
         {
-            var font = GetChar(message[i]);
+            var font = GetGlyph(message[i]);
             for (r = 0; r < 8; r++)
             {
                 for (c = 0; c < 8; c++)
