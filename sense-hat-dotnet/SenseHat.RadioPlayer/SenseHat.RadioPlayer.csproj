@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="CliWrap" Version="3.3.3" />
+    <PackageReference Include="Iot.Device.SenseHat.LedMatrixExt" Version="1.0.1" />
+  </ItemGroup>
+
 </Project>
