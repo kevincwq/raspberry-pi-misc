@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using Iot.Device.Common;
 using Iot.Device.SenseHat;
-using Iot.Device.SenseHat.Extension;
+using Iot.Device.SenseHat.LedMatrixExt;
 
 using SenseHat sh = new();
 

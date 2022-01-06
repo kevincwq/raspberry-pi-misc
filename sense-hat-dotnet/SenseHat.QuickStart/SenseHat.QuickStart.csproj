@@ -8,11 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Iot.Device.Bindings" Version="1.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Iot.Device.SenseHat.Extension\Iot.Device.SenseHat.Extension.csproj" />
+    <PackageReference Include="Iot.Device.SenseHat.LedMatrixExt" Version="1.0.1" />
   </ItemGroup>
 
 </Project>

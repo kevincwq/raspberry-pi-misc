@@ -5,11 +5,7 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenseHat.QuickStart", "SenseHat.QuickStart\SenseHat.QuickStart.csproj", "{2B3C25F7-D7AD-4019-B29B-553CE3858BF1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iot.Device.SenseHat.Extension", "Iot.Device.SenseHat.Extension\Iot.Device.SenseHat.Extension.csproj", "{F24DE312-1C65-4858-B468-555215A0A361}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iot.Device.SenseHat.Extension.Tests", "Iot.Device.SenseHat.Extension.Tests\Iot.Device.SenseHat.Extension.Tests.csproj", "{06F9A23B-8003-4666-B191-01CC90DC42EF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenseHat.RadioPlayer", "SenseHat.RadioPlayer\SenseHat.RadioPlayer.csproj", "{01069435-6BE8-4A57-AD94-1FE0E5D97FCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenseHat.RadioPlayer", "SenseHat.RadioPlayer\SenseHat.RadioPlayer.csproj", "{01069435-6BE8-4A57-AD94-1FE0E5D97FCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +17,6 @@ Global
 		{2B3C25F7-D7AD-4019-B29B-553CE3858BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B3C25F7-D7AD-4019-B29B-553CE3858BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B3C25F7-D7AD-4019-B29B-553CE3858BF1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F24DE312-1C65-4858-B468-555215A0A361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F24DE312-1C65-4858-B468-555215A0A361}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F24DE312-1C65-4858-B468-555215A0A361}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F24DE312-1C65-4858-B468-555215A0A361}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06F9A23B-8003-4666-B191-01CC90DC42EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06F9A23B-8003-4666-B191-01CC90DC42EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06F9A23B-8003-4666-B191-01CC90DC42EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06F9A23B-8003-4666-B191-01CC90DC42EF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{01069435-6BE8-4A57-AD94-1FE0E5D97FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{01069435-6BE8-4A57-AD94-1FE0E5D97FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01069435-6BE8-4A57-AD94-1FE0E5D97FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
