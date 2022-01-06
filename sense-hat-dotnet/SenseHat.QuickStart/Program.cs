@@ -7,19 +7,19 @@ using SenseHat sh = new();
 
 var letters = "@9876543210~!";
 var message = " »»»»0123456789»»»»ABCDEFG»»»»ΔΘΠΣΦΨΩαβζ»»»» ";
-var series = Enumerable.Range(0, 100).Select(v => (float)Math.Sin(v / 20f)).ToArray();
+var series = Enumerable.Range(0, 100).Select(v => (float)Math.Sin(v / 30f)).ToArray();
 int speedInMs = 20;
 
 // LedMatrix displaying
 foreach (var rotation in Enum.GetValues<Rotation>())
 {
     Console.WriteLine("Showing series values - forward - {0}", rotation);
-    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.LightYellow, rotation, true, speedInMs * 4);
+    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.Black, rotation, true, speedInMs * 2);
 
     sh.LedMatrix.Clear();
 
     Console.WriteLine("Showing series values - backward - {0}", rotation);
-    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.LightYellow, rotation, false, speedInMs * 4);
+    sh.LedMatrix.ShowSeriesValues(series, Color.Blue, Color.Black, rotation, false, speedInMs * 2);
 
     sh.LedMatrix.Clear();
 
