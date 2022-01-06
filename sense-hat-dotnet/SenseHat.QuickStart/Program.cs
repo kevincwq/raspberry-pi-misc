@@ -5,6 +5,8 @@ using Iot.Device.SenseHat.LedMatrixExt;
 
 using SenseHat sh = new();
 
+AppDomain.CurrentDomain.ProcessExit += (s, e) => sh.LedMatrix.Clear();
+
 var letters = "@9876543210~!";
 var message = " »»»»0123456789»»»»ABCDEFG»»»»ΔΘΠΣΦΨΩαβζ»»»» ";
 var series = Enumerable.Range(0, 100).Select(x => (float)Math.Sin(x / 30f)).ToArray();
